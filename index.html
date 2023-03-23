@@ -19,7 +19,7 @@
     function load_content(filename) {
         fetch(filename)
         .then((response) => response.text())
-        .then((data) => document.write(data));
+        .then((data) => document.body.innerHTML += data);
     }
       
     load_content("README.md");
