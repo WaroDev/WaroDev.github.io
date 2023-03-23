@@ -33,8 +33,10 @@
             .then((response) => response.text())
             .then((data) => document.body.innerHTML += markdownParser(data));
         }
-
-        load_content("welcome.md");
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            load_content("welcome.md");
+        }, false);
     </script>
     
     <link rel="stylesheet" href="style.css">
