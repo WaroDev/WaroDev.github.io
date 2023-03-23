@@ -23,8 +23,9 @@
             .replace(/\*(.*)\*/gim, '<i>$1</i>') // italic text
             .replace(/!\[(.*?)\]\((.*?)\)/gim, "<img alt='$1' src='$2' />") // image
             .replace(/\[(.*?)\]\((.*?)\)/gim, "<a href='$2'>$1</a>") // link
-            .replace(/\n$/gim, '<br />') // line break
-            .replace(/^\> (.*$)/gim, '<blockquote>$1</blockquote>'); // blockquote
+            .replace(/^\> (.*$)/gim, '<blockquote>$1</blockquote>') // blockquote
+            .replace(/\n/gim, '<br>\n') // line break
+            .replace(/(<\/h[1-6]>)<br>/gim, '$1'); // remove <br> after headings
         return toHTML.trim(); // using trim method to remove whitespace
     }  
       
