@@ -19,6 +19,9 @@ h1,h2,h3 {
 p:empty:before {
   content: ' ';
   white-space: pre;
+}
+
+p:empty {
   line-height: 1em;
   margin: 0;
 }
