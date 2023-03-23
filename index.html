@@ -14,5 +14,16 @@
 </head>
 <body>
   <h1>Welcome!</h1>
+    
+  <script>
+    function load_content(filename) {
+        fetch(filename)
+        .then((response) => response.text())
+        .then((data) => document.write(data));
+    }
+      
+    load_content("readme.md");
+  </script>
+    
 </body>
 </html>
