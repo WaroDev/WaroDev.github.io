@@ -25,7 +25,9 @@
             .replace(/\[(.*?)\]\((.*?)\)/gim, "<a href='$2'>$1</a>") // link
             .replace(/^\> (.*$)/gim, '<blockquote>$1</blockquote>') // blockquote
             .replace(/\n/gim, '<br>\n') // line break
-            .replace(/(<\/h[1-6]>)<br>/gim, '$1'); // remove <br> after headings
+            .replace(/(<\/h[1-6]>)<br>/gim, '$1') // remove <br> after headings
+            .replace(/---<br>/gim, '<hr>') // horizontal line
+            .replace(/\n<br>\n/gim, '\n<p>&nbsp;</p>'); // <p> instead of <br> in empty lines to change height
         return toHTML.trim(); // using trim method to remove whitespace
     }  
       
