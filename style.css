@@ -16,7 +16,9 @@ h1,h2,h3 {
   text-align: center; 
 }
 
-p :empty {
+p:empty:before {
+  content: ' ';
+  white-space: pre;
   line-height: 1em;
   margin: 0;
 }
