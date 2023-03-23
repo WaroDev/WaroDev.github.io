@@ -10,35 +10,36 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     
+    <script>
+        function markdownParser(text) {
+            let toHTML = text
+                .replace(/^### (.*$)/gim, '<h3>$1</h3>') // h3 tag
+                .replace(/^## (.*$)/gim, '<h2>$1</h2>') // h2 tag
+                .replace(/^# (.*$)/gim, '<h1>$1</h1>') // h1 tag
+                .replace(/\*\*(.*)\*\*/gim, '<b>$1</b>') // bold text
+                .replace(/\*(.*)\*/gim, '<i>$1</i>') // italic text
+                .replace(/!\[(.*?)\]\((.*?)\)/gim, "<img alt='$1' src='$2' />") // image
+                .replace(/\[(.*?)\]\((.*?)\)/gim, "<a href='$2'>$1</a>") // link
+                .replace(/^\> (.*$)/gim, '<blockquote>$1</blockquote>') // blockquote
+                .replace(/\n/gim, '<br>\n') // line break
+                .replace(/(<\/h[1-6]>)<br>/gim, '$1') // remove <br> after headings
+                .replace(/---<br>/gim, '<hr>') // horizontal line
+                .replace(/\n<br>\n/gim, '\n<p></p>'); // <p> instead of <br> in empty lines to change height
+            return toHTML.trim(); // using trim method to remove whitespace
+        }  
+
+        function load_content(filename) {
+            fetch(filename)
+            .then((response) => response.text())
+            .then((data) => document.body.innerHTML += markdownParser(data));
+        }
+
+        load_content("welcome.md");
+    </script>
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <script>
-    function markdownParser(text) {
-        let toHTML = text
-            .replace(/^### (.*$)/gim, '<h3>$1</h3>') // h3 tag
-            .replace(/^## (.*$)/gim, '<h2>$1</h2>') // h2 tag
-            .replace(/^# (.*$)/gim, '<h1>$1</h1>') // h1 tag
-            .replace(/\*\*(.*)\*\*/gim, '<b>$1</b>') // bold text
-            .replace(/\*(.*)\*/gim, '<i>$1</i>') // italic text
-            .replace(/!\[(.*?)\]\((.*?)\)/gim, "<img alt='$1' src='$2' />") // image
-            .replace(/\[(.*?)\]\((.*?)\)/gim, "<a href='$2'>$1</a>") // link
-            .replace(/^\> (.*$)/gim, '<blockquote>$1</blockquote>') // blockquote
-            .replace(/\n/gim, '<br>\n') // line break
-            .replace(/(<\/h[1-6]>)<br>/gim, '$1') // remove <br> after headings
-            .replace(/---<br>/gim, '<hr>') // horizontal line
-            .replace(/\n<br>\n/gim, '\n<p></p>'); // <p> instead of <br> in empty lines to change height
-        return toHTML.trim(); // using trim method to remove whitespace
-    }  
-      
-    function load_content(filename) {
-        fetch(filename)
-        .then((response) => response.text())
-        .then((data) => document.body.innerHTML += markdownParser(data));
-    }
-      
-    load_content("welcome.md");
-  </script>
-    
+
 </body>
 </html>
