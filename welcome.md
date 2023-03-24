@@ -1,4 +1,7 @@
 # Welcome!
+
+[README](README.md)
+
 blabla
 ---
 
